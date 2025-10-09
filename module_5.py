@@ -7,7 +7,7 @@ class Publication:
         self.pub_type = pub_type
 
     def publish(self,filename):
-        with open(filename,'w') as f:
+        with open(filename,'a') as f:
             f.write(self.pub_type + '==========\n')
             f.write(self.pub_text + '\n\n\n')
 
@@ -19,7 +19,7 @@ class News(Publication):
         self.date = date
 
     def publish(self,filename):
-        with open(filename,'w') as f:
+        with open(filename,'a') as f:
             f.write(self.pub_type + '==========\n')
             f.write(self.pub_text + '\n')
             f.write(self.news_city + '====' + str(self.date) + '\n\n\n')
@@ -30,7 +30,7 @@ class PrivateAd(Publication):
         self.expiration_date = expiration_date
 
     def publish(self,filename):
-        with open(filename,'w') as f:
+        with open(filename,'a') as f:
             f.write(self.pub_type + '==========\n')
             f.write(self.pub_text + '\n')
             f.write('Days left: ' + str((datetime.strptime(self.expiration_date,'%Y-%m-%d').date() - date.today()).days) + '\n\n\n')
@@ -42,7 +42,7 @@ class BirthdayWish(Publication):
         self.name = name
 
     def publish(self,filename):
-        with open(filename,'w') as f:
+        with open(filename,'a') as f:
             f.write(self.pub_type + '==========\n')
             f.write(self.name + '\n')
             f.write(self.pub_text + '\n\n\n')
