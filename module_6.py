@@ -69,6 +69,7 @@ class InputFile:
 
         return publications
 
+
 def read_from_input():
     while 1==1:
         publication_type = input("Please provide the publication type out of the list: News, PrivateAd, BirthdayWish: ")
