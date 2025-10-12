@@ -47,10 +47,7 @@ class BirthdayWish(Publication):
             f.write(self.name + '\n')
             f.write(self.pub_text + '\n\n\n')
 
-
-if __name__ == '__main__':
-    filename = '/Users/Mykhailo_Holovatiuk/Downloads/publication.txt'
-
+def read_from_input():
     while 1==1:
         publication_type = input("Please provide the publication type out of the list: News, PrivateAd, BirthdayWish: ")
         pub_text = input("Please provide your publication text: ")
@@ -70,3 +67,12 @@ if __name__ == '__main__':
 
         if input("Please click Y if you would like to complete").lower() == 'y':
             break
+
+if __name__ == '__main__':
+    filename = '/Users/Mykhailo_Holovatiuk/Downloads/publication.txt'
+
+    user_selection = input("Put F if you input publications from file, otherwise press enter: ")
+    if user_selection.lower() == 'f':
+        pass
+    else:
+        read_from_input()

@@ -48,26 +48,29 @@ def count_spaces(input_str):
 
     return count_sp
 
-str = """homEwork:
-tHis iz your homeWork, copy these Text to variable.
+def normalize_text(input_str):
+    normalised_str = normalize_string(input_str)
 
-You NEED TO normalize it fROM letter CASEs point oF View. also, create one MORE senTENCE witH LAST WoRDS of each existING SENtence and add it to the END OF this Paragraph.
+    # Initialize list with sentences
+    sentences = format_sentences(normalised_str)
 
-it iZ misspeLLing here. fix“iZ” with correct “is”, but ONLY when it Iz a mistAKE.
-
-last iz TO calculate nuMber OF Whitespace characteRS in this Tex. caREFULL, not only Spaces, but ALL whitespaces. I got 87."""
-
+    # Merge all sentences into the final text, including the last words
+    return '.'.join(sentences) + collect_last_words(sentences) + '.'
 
 
-# Normalize text by putting all letters to lowercase and replace word iz with is
-normalised_str = normalize_string(str)
+if __name__ == '__main__':
 
-# Initialize list with sentences
-sentences = format_sentences(normalised_str)
+    str = """homEwork:
+    tHis iz your homeWork, copy these Text to variable.
+    
+    You NEED TO normalize it fROM letter CASEs point oF View. also, create one MORE senTENCE witH LAST WoRDS of each existING SENtence and add it to the END OF this Paragraph.
+    
+    it iZ misspeLLing here. fix“iZ” with correct “is”, but ONLY when it Iz a mistAKE.
+    
+    last iz TO calculate nuMber OF Whitespace characteRS in this Tex. caREFULL, not only Spaces, but ALL whitespaces. I got 87."""
 
-# Merge all sentences into the final text, including the last words
-final_text = '.'.join(sentences) + collect_last_words(sentences) + '.'
+    final_text = normalize_text(str)
 
-# Print the results
-print("Normalized text is: ", final_text)
-print("Number of spaces is: ", count_spaces(final_text))
+    # Print the results
+    print("Normalized text is: ", final_text)
+    print("Number of spaces is: ", count_spaces(final_text))
