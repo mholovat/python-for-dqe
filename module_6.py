@@ -47,6 +47,28 @@ class BirthdayWish(Publication):
             f.write(self.name + '\n')
             f.write(self.pub_text + '\n\n\n')
 
+class InputFile:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def read(self):
+        with open(self.filename,'r') as f:
+            lines = f.readlines()
+
+        publications = []
+        for line in lines:
+            publication = {}
+            split_line = line.split()
+            publication['publication_type'] = split_line[0]
+            publication['pub_text'] = split_line[1]
+            publication['news_city'] = split_line[2]
+            publication['expiration_date'] = split_line[4]
+            publication['name'] = split_line[5]
+
+            publications.append(publication)
+
+        return publications
+
 def read_from_input():
     while 1==1:
         publication_type = input("Please provide the publication type out of the list: News, PrivateAd, BirthdayWish: ")
@@ -68,11 +90,29 @@ def read_from_input():
         if input("Please click Y if you would like to complete").lower() == 'y':
             break
 
+
+def read_from_file(publications):
+    publications = read_from_input()
+    for pub in publications:
+        if pub['publication_type'].lower() == 'news' or publication_type.lower() == 'new':
+            news = News(pub['pub_text'], pub['news_city'])
+            news.publish(filename)
+        elif pub['publication_type'].lower() == 'privatead':
+            privatead = PrivateAd(pub['pub_text'], pub['expiration_date'])
+            privatead.publish(filename)
+        elif pub['publication_type'].lower() == 'birthdaywish':
+            birthdaywish = BirthdayWish(pub['pub_text'], pub['name'])
+            birthdaywish.publish(filename)
+
+
 if __name__ == '__main__':
     filename = '/Users/Mykhailo_Holovatiuk/Downloads/publication.txt'
 
     user_selection = input("Put F if you input publications from file, otherwise press enter: ")
     if user_selection.lower() == 'f':
-        pass
+        input_folder = input("Please provide folder, otherwise the default folder will be used.: ")
+        input_filename = input("Please provide your filename: ")
+        input_file = InputFile(os.path.join(input_folder, input_filename))
+        read_from_file(input_file.read())
     else:
         read_from_input()
