@@ -32,7 +32,7 @@ if __name__ == '__main__':
         input_folder = input("Please provide folder, otherwise the default folder will be used.: ")
         input_filename = input("Please provide your filename: ")
         input_file = module_6.InputFile(os.path.join(input_folder, input_filename))
-        module_6.read_from_file(input_file.read(), filename)
+        module_6.read_from_file(input_file.read_file(), filename)
     elif user_input == '3':
         input_folder = input("Please provide folder, otherwise the default folder will be used.: ")
         input_filename = input("Please provide your filename: ")

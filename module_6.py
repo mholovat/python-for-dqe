@@ -1,3 +1,4 @@
+import os
 from datetime import date, datetime
 
 
@@ -53,7 +54,7 @@ class InputFile:
     def __init__(self, filename):
         self.filename = filename
 
-    def read(self):
+    def read_file(self):
         with open(self.filename,'r') as f:
             lines = f.readlines()
 
@@ -95,7 +96,6 @@ def read_from_input(filename):
 
 
 def read_from_file(publications, filename):
-    publications = read_from_input()
     for pub in publications:
         if pub['publication_type'].lower() == 'news' or publication_type.lower() == 'new':
             news = News(pub['pub_text'], pub['news_city'])
@@ -116,6 +116,6 @@ if __name__ == '__main__':
         input_folder = input("Please provide folder, otherwise the default folder will be used.: ")
         input_filename = input("Please provide your filename: ")
         input_file = InputFile(os.path.join(input_folder, input_filename))
-        read_from_file(input_file.read(), filename)
+        read_from_file(input_file.read_file(), filename)
     else:
         read_from_input(filename)
