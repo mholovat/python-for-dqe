@@ -97,7 +97,7 @@ def read_from_input(filename):
 
 def read_from_file(publications, filename):
     for pub in publications:
-        if pub['publication_type'].lower() == 'news' or publication_type.lower() == 'new':
+        if pub['publication_type'].lower() == 'news' or pub['publication_type'].lower() == 'new':
             news = News(pub['pub_text'], pub['news_city'])
             news.publish(filename)
         elif pub['publication_type'].lower() == 'privatead':
