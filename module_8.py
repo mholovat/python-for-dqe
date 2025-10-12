@@ -3,19 +3,23 @@ import os
 import module_6
 import json
 
-def read_from_json(json_object, filename):
-    with open(os.path.join(input_folder, input_filename), 'r') as f:
-        json_dic = json.load(f)
-        for pub_id, pub in json_dic:
-            if pub['publication_type'].lower() == 'news' or publication_type.lower() == 'new':
-                news = News(pub['pub_text'], pub['news_city'])
-                news.publish(filename)
-            elif pub['publication_type'].lower() == 'privatead':
-                privatead = PrivateAd(pub['pub_text'], pub['expiration_date'])
-                privatead.publish(filename)
-            elif pub['publication_type'].lower() == 'birthdaywish':
-                birthdaywish = BirthdayWish(pub['pub_text'], pub['name'])
-                birthdaywish.publish(filename)
+class JsonInput:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def read_from_json(self, filename):
+        with open(self.filename, 'r') as f:
+            json_dic = json.load(f)
+            for pub_id, pub in json_dic:
+                if pub['publication_type'].lower() == 'news' or publication_type.lower() == 'new':
+                    news = module_6.News(pub['pub_text'], pub['news_city'])
+                    news.publish(filename)
+                elif pub['publication_type'].lower() == 'privatead':
+                    privatead = module_6.PrivateAd(pub['pub_text'], pub['expiration_date'])
+                    privatead.publish(filename)
+                elif pub['publication_type'].lower() == 'birthdaywish':
+                    birthdaywish = module_6.BirthdayWish(pub['pub_text'], pub['name'])
+                    birthdaywish.publish(filename)
 
 if __name__ == '__main__':
     filename = '/Users/Mykhailo_Holovatiuk/Downloads/publication.csv'
@@ -36,4 +40,5 @@ if __name__ == '__main__':
     elif user_input == '3':
         input_folder = input("Please provide folder, otherwise the default folder will be used.: ")
         input_filename = input("Please provide your filename: ")
-        read_from_json(os.path.join(input_folder, input_filename), filename)
+        json_input = JsonInput(os.path.join(input_folder, input_filename))
+        json_input.read_from_json(filename)
