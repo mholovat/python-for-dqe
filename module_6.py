@@ -24,6 +24,7 @@ class News(Publication):
             f.write(self.pub_text + '\n')
             f.write(self.news_city + '====' + str(self.date) + '\n\n\n')
 
+
 class PrivateAd(Publication):
     def __init__(self, pub_text, expiration_date ,pub_type='PrivateAd'):
         super().__init__(pub_text, pub_type)
@@ -46,6 +47,7 @@ class BirthdayWish(Publication):
             f.write(self.pub_type + '==========\n')
             f.write(self.name + '\n')
             f.write(self.pub_text + '\n\n\n')
+
 
 class InputFile:
     def __init__(self, filename):
@@ -107,7 +109,7 @@ def read_from_file(publications):
 
 
 if __name__ == '__main__':
-    filename = '/Users/Mykhailo_Holovatiuk/Downloads/publication.txt'
+    filename = '/Users/Mykhailo_Holovatiuk/Downloads/publication.csv'
 
     user_selection = input("Put F if you input publications from file, otherwise press enter: ")
     if user_selection.lower() == 'f':
