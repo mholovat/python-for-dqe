@@ -72,7 +72,7 @@ class InputFile:
         return publications
 
 
-def read_from_input():
+def read_from_input(filename):
     while 1==1:
         publication_type = input("Please provide the publication type out of the list: News, PrivateAd, BirthdayWish: ")
         pub_text = input("Please provide your publication text: ")
@@ -94,7 +94,7 @@ def read_from_input():
             break
 
 
-def read_from_file(publications):
+def read_from_file(publications, filename):
     publications = read_from_input()
     for pub in publications:
         if pub['publication_type'].lower() == 'news' or publication_type.lower() == 'new':
@@ -116,6 +116,6 @@ if __name__ == '__main__':
         input_folder = input("Please provide folder, otherwise the default folder will be used.: ")
         input_filename = input("Please provide your filename: ")
         input_file = InputFile(os.path.join(input_folder, input_filename))
-        read_from_file(input_file.read())
+        read_from_file(input_file.read(), filename)
     else:
-        read_from_input()
+        read_from_input(filename)
